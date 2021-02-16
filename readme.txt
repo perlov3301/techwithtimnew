@@ -29,5 +29,6 @@ git add .
 git commit -m "first commit before react"
 git branch -M main
 git remote add origin https://github.com/perlov3301/techwithtimnew.git
-git push -u origin mai
->>>>>>> 64671369893483b1b5b82521915d9903abe5edd1
+git push -u origin makemigrations
+# redux
+npm install react-redux

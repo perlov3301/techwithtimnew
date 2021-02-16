@@ -14,18 +14,21 @@ export default class HomePage extends Component {
         this.state = {
             roomCode: null,
         };
-        // this.renderHomePage = this.renderHomePage.bind(this);
+        this.clearRoomCode = this.clearRoomCode.bind(this);
     }
     
    async componentDidMount() {
        fetch("/api/user-in-room")
-         .then((response) => response.json())
+         .then((response) => {
+             let a = response.json();
+             console.log("home componentDdMount:", a);
+             return a;
+         } )
          .then((data) => {
-             console.log("home componentDidMount:", data.code);
-             this.setState({
-                 roomCode: data.code,
-             });
-         });
+             console.log("home componentDidMount data.code:", data.code);
+             this.setState({ roomCode: data.code, });
+         })
+         .catch((error) => { console.log("home:", error) });
    }
     renderHomePage() {
         return (
@@ -47,16 +50,34 @@ export default class HomePage extends Component {
             </Grid>
         );
     }
+    clearRoomCode() {
+        console.log("home clearRoomCode");
+        this.setState({
+            roomCode: null,
+        });
+    }
 
     render() {
         return (
             <fieldset className="fieldclass"><legend>HomePage</legend>
                 <Router>
                     <Switch>
-                        <Route exact path="/" render={this.renderHomePage} />
+                        <Route exact path="/" render={() => {
+                            return this.state.roomCode ? 
+                              ( <Redirect to={`/room/${this.state.roomCode}`} /> ) : ( 
+                                  this.renderHomePage() )
+                        }} />
                         <Route path="/join" component={RoomJoinPage} />
                         <Route path="/create" component={CreateRoomPage} />
-                        <Route path="/room/:roomCode" component={Room} /> {/* params 'match' */}
+                        <Route 
+                          path="/room/:roomCode" 
+                          render={(props) => 
+                            {
+                              return (<Room {...props} leaveRoomCallback={this.clearRoomCode} />);
+                            }
+                          }
+                        />
+                        {/* component={Room} /> params 'match' */}
                     </Switch>
                 </Router>
             </fieldset>
