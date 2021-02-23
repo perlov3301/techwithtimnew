@@ -16,9 +16,9 @@ export default class Room extends Component {
     }
     getRoomDetails() {
         fetch('/api/get-room' + '?code=' + this.roomCode)
-          .then(async (response) => {
+          .then((response) => {
               if (!response.ok) {
-                 await  this.props.leaveRoomCallback();
+                  this.props.leaveRoomCallback();
                   this.props.history.push("/");
               }
               return response.json();
@@ -28,7 +28,7 @@ export default class Room extends Component {
                   votesToSkip: data.votes_to_skip,
                   guestCanPause: data.guest_can_pause,
                   isHost: data.is_host
-              })
+              });
           });
     }
 
@@ -38,13 +38,13 @@ export default class Room extends Component {
             headers: { "Content-Type": "application/json" },
         } ;
         fetch("/api/leave-room", requestOptions)
-          .then(async (response) => {
-              await this.props.leaveRoomCallback();
+          .then((response) => {
+              console.log("room leaveButton response:", response);
+              this.props.leaveRoomCallback();
               this.props.history.push("/");
           } )
           .catch((error) => console.log(error) );
     }
-    // leaveRoomCallback() {}
 
     render() {
         let a = '1_' + this.state.guestCanPause ;

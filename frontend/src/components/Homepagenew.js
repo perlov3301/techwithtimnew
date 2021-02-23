@@ -51,7 +51,7 @@ export default class HomePage extends Component {
         );
     }
     clearRoomCode() {
-        console.log("homepage clearRoomCode");
+        console.log("home clearRoomCode");
         this.setState({
             roomCode: null,
         });
@@ -62,20 +62,17 @@ export default class HomePage extends Component {
             <fieldset className="fieldclass"><legend>HomePage</legend>
                 <Router>
                     <Switch>
-                        <Route exact path="/" 
-                          render={() => {
-                            return this.state.roomCode ? (
-                               <Redirect to={`/room/${this.state.roomCode}`} /> 
-                            ) : ( 
-                                  this.renderHomePage() 
-                                );
-                          }} 
-                        />
+                        <Route exact path="/" render={() => {
+                            return this.state.roomCode ? 
+                              ( <Redirect to={`/room/${this.state.roomCode}`} /> ) : ( 
+                                  this.renderHomePage() )
+                        }} />
                         <Route path="/join" component={RoomJoinPage} />
                         <Route path="/create" component={CreateRoomPage} />
                         <Route 
                           path="/room/:roomCode" 
-                          render={(props) => {
+                          render={(props) => 
+                            {
                               return (<Room {...props} leaveRoomCallback={this.clearRoomCode} />);
                             }
                           }
