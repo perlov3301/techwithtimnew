@@ -29,6 +29,13 @@ git add .
 git commit -m "first commit before react"
 git branch -M main
 git remote add origin https://github.com/perlov3301/techwithtimnew.git
-git push -u origin makemigrations
+git push -u origin 
 # redux
 npm install react-redux
+# radio values
+  the onChange event returns the value as type string.Your setState then
+  triggers a rerender and assigns that value to RadioGroup. It stops working
+   at this point because RadioGroup has value={"true"} or {"10"}, while the
+   corresponding RadioButtons has value={true} or {10}
+
+https://www.youtube.com/watch?v=R-22NeS-P2c

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Button, Typography } from "@material-ui/core";
+import CreateRoomPage from "./CreateRoomPage";
 
 export default class Room extends Component {
     constructor(props) {
@@ -8,10 +9,15 @@ export default class Room extends Component {
             votesToSkip: 2,
             guestCanPause: false,
             isHost: false,
+            showSettings: false,
         } ;
         // match is prop how get component /room/:roomCode
         this.roomCode = this.props.match.params.roomCode;
         this.leaveButtonPressed = this.leaveButtonPressed.bind(this);
+        this.upadateShowSettings = this.updateShowSettings.bind(this);
+        this.renderSettingsButton = this.renderSettingsButton.bind(this);
+        this.renderSettings =       this.renderSettings.bind(this);
+        this.getRoomDetails =       this.getRoomDetails.bind(this);
         this.getRoomDetails();
     }
     getRoomDetails() {
@@ -46,9 +52,62 @@ export default class Room extends Component {
           .catch((error) => console.log(error) );
     }
 
+    async updateShowSettings(value) {
+        console.log("room updateShowSettings value:", value);
+        this.setState({
+            showSettings: value,
+        });
+        await console.log("room settings:", this.state);
+        return true;
+    }
+
+    renderSettings () {
+        return (
+            <fieldset className="fieldclass"><legend> Settings</legend>
+            <Grid container spacing={1}>
+                
+              <Grid item xs={12} align="center">
+                 <CreateRoomPage 
+                  update={true} 
+                  votesToSkip={this.state.votesToSkip}
+                  guestCanPause={this.state.guestCanPause} 
+                  roomCode={this.roomCode} 
+                  updateCallback={this.getRoomDetails} />
+                  
+              </Grid>
+              <Grid item xs={12} align="center">
+                <Button 
+                  color="secondary"
+                  variant="contained"
+                  onClick={() => this.updateShowSettings(false)} >Close
+                </Button>
+              </Grid>
+            </Grid>
+            <div>renderSettings will be soon here</div>
+          </fieldset>
+        );
+    }
+
+    renderSettingsButton() {
+        return (
+            <Grid item xs={12} align="center" >
+                <Button variant="contained" 
+                  color="primary"
+                  onClick={async () =>{ 
+                      await console.log("click settings Button");
+                      this.updateShowSettings(true);
+                      return true;
+                    } } >
+                      Settings
+                </Button> 
+            </Grid>
+        );
+    }
+
     render() {
-        let a = '1_' + this.state.guestCanPause ;
-        let b = '2_' + this.state.isHost;
+        if (this.state.showSettings) {
+            return this.renderSettings();
+        }
         return (
             <fieldset className="fieldclass"><legend>Room</legend>
               <Grid container spacing={1}>
@@ -72,6 +131,7 @@ export default class Room extends Component {
                           Host: {this.state.isHost.toString()}
                       </Typography>
                   </Grid>
+                  {this.state.isHost ? this.renderSettingsButton() : null}
                   <Grid item xs={12} align="center">
                       <Button color="secondary" variant="contained" 
                         onClick={ this.leaveButtonPressed } >Leave Room
