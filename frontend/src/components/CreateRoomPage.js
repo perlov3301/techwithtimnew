@@ -33,8 +33,7 @@ export default class CreateRoomPage extends Component {
         this.handleGuestCanPauseChange = this.handleGuestCanPauseChange.bind(this);
         this.handleRoomButtonPressed =   this.handleRoomButtonPressed.bind(this);
         this.handleUpdateButtonPressed = this.handleUpdateButtonPressed.bind(this);
-        console.log("createroom constructor state", this.state);
-        console.log("createroom constructor props", this.props);
+        // console.log("createroom constructor props", this.props);
     }
     handleVotesChange(e) {
         this.setState({
@@ -43,32 +42,22 @@ export default class CreateRoomPage extends Component {
     }
     handleGuestCanPauseChange(e) {
         const avalue = e.target.value;
-        console.log("create handleguest e.target.value:", avalue);
         this.setState({
             guestCanPause: e.target.value === "true" ? true : false
         });
-        this.props.guestCanPause=
-        console.log("create handleguest state.guest after:", this.state.guestCanPause);
     }
     async handleRoomButtonPressed() {
         const testdata1 = { 
             votes_to_skip:   this.state.votesToSkip,
             guest_can_pause: this.state.guestCanPause,
          };
-      console.log("create Button testdata1:", testdata1 );
 await fetch('/api/create-room', {
   method: 'POST', // or 'PUT' or 'PATCH'
   headers: { 'Content-Type': 'application/json', },
   body: JSON.stringify(testdata1),
 })
-.then(response => { 
-    console.log("create create response:", response);
-    return response.json(); })
-.then((data) => { 
-    console.log('create create data', data); 
-    console.log("create create history:", this.props.history);
-    this.props.history.push("/room/" + data.code);
-  })
+.then(response => { return response.json(); })
+.then((data) => {  this.props.history.push("/room/" + data.code); })
 .catch((error) => { console.error('createRoom error:', error); });
         fetch('/api/list')
           .then(response => {
@@ -88,23 +77,18 @@ await fetch('/api/create-room', {
             guest_can_pause: this.state.guestCanPause,
             code: this.props.roomCode,
          };
-       console.log("update Button body:", testdata2 );
        fetch('/api/update-room', {
            method: 'PATCH', 
            headers: { 'Content-Type': 'application/json', },
            body: JSON.stringify(testdata2),
          })
         .then((response) => { 
-           console.log("create update response:", response);
            if (response.ok) {  
                   this.setState({ successMsg:"Room was updated" }); } 
            else { this.setState({ errorMsg:"Error while updating Room..." }); }
            return response.json(); 
          })
-        .then((data) => { 
-           console.log('create update data1', data); 
-           this.props.updateCallback();
-         })
+        .then((data) => {  this.props.updateCallback(); })
         .catch((error) => { console.error('create update error:', error); });
     } // handleUpdateButtonPressed
 
@@ -145,8 +129,8 @@ await fetch('/api/create-room', {
         const title = this.props.update ? "Update Room" : "Create a Room";
         const pauseState = this.state.guestCanPause.toString();
         const pauseProps = this.props.guestCanPause.toString();
-        console.log("create render pausestate", pauseState);
-        console.log("create render pauseProps", pauseProps);
+        // console.log("create render pausestate", pauseState);
+        // console.log("create render pauseProps", pauseProps);
         return (
             <fieldset className="fieldclass" >
                 <legend>CreateRoomPage</legend>
@@ -217,4 +201,3 @@ await fetch('/api/create-room', {
         );
     }
 }
-    // window.location.href = "/room/" + data.code;

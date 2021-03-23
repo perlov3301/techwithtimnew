@@ -1,0 +1,61 @@
+WARNING:django.request:Not Found: /api/get-room
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /apple-touch-icon-precomposed.png
+WARNING:django.request:Not Found: /apple-touch-icon.png
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): accounts.spotify.com:80
+DEBUG:urllib3.connectionpool:http://accounts.spotify.com:80 "POST /api/token HTTP/1.1" 301 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): accounts.spotify.com:443
+DEBUG:urllib3.connectionpool:https://accounts.spotify.com:443 "GET /api/token HTTP/1.1" 405 None
+ERROR:django.request:Internal Server Error: /spotify/is-authenticated
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/alexanderperlov/Documents/react/reactdjango/twt/music_controller/spotify/views.py", line 66, in get
+    is_authenticated = is_spotify_authenticated(self.request.session.session_key)
+  File "/Users/alexanderperlov/Documents/react/reactdjango/twt/music_controller/spotify/util.py", line 41, in is_spotify_authenticated
+    refresh_spotify_token(session_id)
+  File "/Users/alexanderperlov/Documents/react/reactdjango/twt/music_controller/spotify/util.py", line 50, in refresh_spotify_token
+    response = post('http://accounts.spotify.com/api/token', data={
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/requests/models.py", line 900, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+INFO:django.utils.autoreload:/Users/alexanderperlov/Documents/react/reactdjango/twt/music_controller/spotify/credentials.py changed, reloading.
+DEBUG:asyncio:Using selector: KqueueSelector
+INFO:root:class CreateRoomView;info
+DEBUG:root:class CreateRoomView;debug
+DEBUG:root:spotify views.py; class AuthURL;
+DEBUG:root:spotify views.py; class IsAuthenticated;debug
+DEBUG:root:spotify views.py; class CurrentSong;debug
+DEBUG:asyncio:Using selector: KqueueSelector
+INFO:root:class CreateRoomView;info
+DEBUG:root:class CreateRoomView;debug
+DEBUG:root:spotify views.py; class AuthURL;
+DEBUG:root:spotify views.py; class IsAuthenticated;debug
+DEBUG:root:spotify views.py; class CurrentSong;debug
+DEBUG:asyncio:Using selector: KqueueSelector
+INFO:root:class CreateRoomView;info
+DEBUG:root:class CreateRoomView;debug
+DEBUG:root:spotify views.py; class AuthURL;
+DEBUG:root:spotify views.py; class IsAuthenticated;debug
+DEBUG:root:spotify views.py; class CurrentSong;debug
+DEBUG:asyncio:Using selector: KqueueSelector

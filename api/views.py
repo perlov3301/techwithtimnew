@@ -6,19 +6,24 @@ from .models import Room
 from rest_framework.views import APIView #generic
 from rest_framework.response import Response #send response
 from django.http import JsonResponse  #userInRoom
-# import logging
+import logging
+import warnings
 
-# Create your views here.
+logging.basicConfig(filename='apiinfo.log', encoding='utf-8', level=logging.DEBUG)
+
 # Tim's optional api/list 'GET' endpoint
 class RoomsGetList(generics.ListAPIView):
+    print("api views; class RoomGetList;print")
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
 # class RoomView(generics.CreateAPIView): # old
 class RoomView(generics.ListAPIView): # new
+    print("api views; class RoomView;print")
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
 
 class GetRoom(APIView):
+    print("api views; class GetRoom;print")
     serializer_class = RoomSerializer
     lookup_url_kwarg = 'code'
 
@@ -35,6 +40,7 @@ class GetRoom(APIView):
         return Response({'Bad Request': 'Code parameter not found in request'}, status=status.HTTP_400_BAD_REQUEST)
 # post request
 class JoinRoom(APIView):
+    print("api views; class JoinRoom;print")
     lookup_url_kwarg = 'code'
     def post(self, request, format=None):
         if not self.request.session.exists(self.request.session.session_key):
@@ -52,7 +58,9 @@ class JoinRoom(APIView):
           status=status.HTTP_400_BAD_REQUEST)
 
 class CreateRoomView(APIView):
-    # logging.info(f'class CreateRoomView')
+    print("class CreateRoomView;print")
+    logging.info("class CreateRoomView;info")
+    logging.debug("class CreateRoomView;debug")
     serializer_class = CreateRoomSerializer
     def post (self, request, format=None):
         if not self.request.session.exists(self.request.session.session_key):
@@ -80,6 +88,7 @@ class CreateRoomView(APIView):
         return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
     
 class UserInRoom(APIView):
+    print("api views.py; class UserInRoom;print")
     def get(self, request, format=None):
         if not self.request.session.exists(self.request.session.session_key):
             self.request.session.create()
@@ -87,6 +96,7 @@ class UserInRoom(APIView):
         return JsonResponse(data, status=status.HTTP_200_OK)
 
 class LeaveRoom(APIView):
+    print("api views.py; class LeaveRoom;print")
     def post(self, request, format=None):
         if 'room_code' in self.request.session:
             self.request.session.pop('room_code')
@@ -99,6 +109,7 @@ class LeaveRoom(APIView):
         return Response({'Message': 'Success in Leaving a Room'}, status=status.HTTP_200_OK)
 
 class UpdateRoom(APIView):
+    print("api views.py; class UpdateRoom;print")
     serializer_class = UpdateRoomSerializer
 
     def patch(self, request, format=None):

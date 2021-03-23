@@ -21,7 +21,6 @@ export default class HomePage extends Component {
        fetch("/api/user-in-room")
          .then((response) => {
              let a = response.json();
-             console.log("home componentDdMount:", a);
              return a;
          } )
          .then((data) => {
