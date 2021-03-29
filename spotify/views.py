@@ -4,36 +4,38 @@ from rest_framework.views import APIView
 from requests import Request, post
 from rest_framework import status
 from rest_framework.response import Response
-from .util import *
-# update_or_create_user_tokens, is_spotify_authenticated, get_user_tokens, execute.spo...
+from .util import * # update_or_create_user_tokens, is_spotify_authenticated, get_user_tokens, execute.spo...
 from api.models import Room
 import logging
 
 logging.basicConfig(filename='debug.log', encoding='urf-8', level=logging.debug)
 # request authorization to spotify
 class AuthURL(APIView):
-    print("spotify views.py; class AuthURL;")
-    # logging.info("spotify views.py; class AuthURL;a")
     logging.debug("spotify views.py; class AuthURL;")
     def get(self, request, format=None): # from spotify documentation
         scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing'
-
         url = Request('GET', 'https://accounts.spotify.com/authorize', params={
             'scope': scopes,
             'response_type': 'code',
             'redirect_uri': REDIRECT_URI,
             'client_id': CLIENT_ID
         }).prepare().url
+        # logging.debug("spotify views class AuthURL; %s", %scopes)
+        logging.debug(" AuthURL REDIRECT_URI:%s", REDIRECT_URI)
+        logging.debug("AuthURL CLIENT_ID:%s", CLIENT_ID) 
+        logging.debug(" AuthURL url:%s", url) 
 
         return Response({'url': url}, status=status.HTTP_200_OK)
         
 # return information to function from request
 def spotify_callback(request, format=None):
-    print("spotify views.py; spotify_calback;")
-    logging.info("spotify views.py; spotify_callback")
-    logging.debug("spotify views.py; spotify_callback")
+    logging.debug("spotify views.py spotify_callback;")
     code = request.GET.get('code')
     error = request.GET.get('error')
+    logging.debug("callback code:%s", code)
+    logging.debug(" AuthURL REDIRECT_URI:%s", REDIRECT_URI)
+    logging.debug("AuthURL CLIENT_ID:%s", CLIENT_ID) 
+    logging.debug("calback secret:%s", )
 
     response = post('https://accounts.spotify.com/api/token', data={
         'grant_type': 'authorization_code',
