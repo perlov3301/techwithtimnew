@@ -59,7 +59,7 @@ export default class Room extends Component {
             } 
             return response.json();
          })
-          .then(data => {
+          .then((data) => {
               console.log("room authenticate data.status:", data.status);
               this.setState({ spotifyAuthenticated: data.status });
               if (!data.status) {
@@ -68,6 +68,7 @@ export default class Room extends Component {
                     .then((data) => { // redirect to athorization
                         console.log("room authenticate !data.status=> data.url:", data.url)
                         window.location.replace(data.url);  
+                        // window.location.replace("htts://developer.spotify.net");
                     })
               }
           })

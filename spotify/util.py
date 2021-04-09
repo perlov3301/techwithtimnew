@@ -5,23 +5,29 @@ from .credentials import CLIENT_ID, CLIENT_SECRET
 from requests import post, put, get
 import logging
 
-logging.basicConfig(filename='debug.log', format='utf-8', level=logging.DEBUG )
+logging.basicConfig(filename='spotifyutil.log', format='utf-8', level=logging.DEBUG )
 
 BASE_URL = "https://api.spotify.com/v1/me"
 
 def get_user_tokens(session_id):
     user_tokens = SpotifyToken.objects.filter(user=session_id)
     if user_tokens.exists():
+        logging.debug("spotify util user_tokens exists")
         return user_tokens[0]
     else:
+        logging.debug("spotify util user_tokens not exists")
         return None
 
 def update_or_create_user_tokens(session_id, access_token, token_type, 
                                    expires_in, refresh_token):
     tokens = get_user_tokens(session_id)
-    expires_in = timezone.now() + timedelta(seconds = 3600) # 3600 expires_in
+    # expires_in = timezone.now() + timedelta(seconds = 3600)
+    logging.debug("spotify util update_or_create tokens:%s", tokens)
+    logging.debug("spotify util update_or_create expires_in:%s", expires_in)
+    expires_in = timezone.now() + timedelta(seconds = expires_in)
 
     if tokens:
+        logging.debug("spotify util update_or_create tokens exists:%s", tokens)
         tokens.access_token = access_token
         tokens.refresh_token = refresh_token
         tokens.expires_in = expires_in
@@ -31,21 +37,26 @@ def update_or_create_user_tokens(session_id, access_token, token_type,
         tokens = SpotifyToken(user=session_id, access_token=access_token, 
                               refresh_token=refresh_token, token_type=token_type, 
                               expires_in=expires_in)
+        logging.debug("spotify util create new tokens:%s", tokens)
         tokens.save()
 
 def is_spotify_authenticated(session_id):
     tokens = get_user_tokens(session_id)
     if tokens:
+        logging.debug("spotify util authenticated=yes tokens:%s:", tokens)
         expiry = tokens.expires_in
         if expiry <= timezone.now():
+            logging.debug("spotify util authenticated need refresh")
             refresh_spotify_token(session_id)
-
+            logging.debug("spotify util authenticated refreshed")
+            
         return True
 
     return False
 
 def refresh_spotify_token(session_id):
     refresh_token = get_user_tokens(session_id).refresh_token
+    logging.debug("spotify util refresh_spotify ")
 
     response = post('http://accounts.spotify.com/api/token', data={
         'grant_type': 'refresh_token',
@@ -53,6 +64,8 @@ def refresh_spotify_token(session_id):
         'client_id': CLIENT_ID,
         'client_secret': CLIENT_SECRET
     }).json()
+                
+    logging.debug("spotify util authenticated refresh_spotify response:%s", response)
 
     access_token = response.get('access_token')
     token_type = response.get('token_type')
