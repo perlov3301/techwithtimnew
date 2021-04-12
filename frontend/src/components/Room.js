@@ -30,12 +30,16 @@ export default class Room extends Component {
               return response.json();
           } )
           .then((data) => {
+              conosole.log("room getroomdetails data.is_host", data.is_host);
               this.setState({
                   votesToSkip: data.votes_to_skip,
                   guestCanPause: data.guest_can_pause,
                   isHost: data.is_host
               });
-              if (this.state.isHost) { this.authenticateSpotify(); }
+              console.log("room getroomdetails state.isHost:", this.state.isHost);
+              // if (this.state.isHost) 
+              if (data.is_host)
+                { this.authenticateSpotify(); }
           });
     }
     sampleMethod() {
@@ -52,19 +56,30 @@ export default class Room extends Component {
         fetch("/spotify/is-authenticated")
           //.then(response => response.json())
           .then((response) => {
-            console.log("room authenticate;response:", response);
+            console.log("room authenticatespotify;fetch response:", response);
             const contentType = response.headers.get('Content-Type');
             if (!contentType || !contentType.includes('application/json')) {
-              throw new TypeError("room authenticate: we haven't got JSON!");
+              throw new TypeError("room authenticatespotify: we haven't got JSON!");
             } 
             return response.json();
          })
           .then((data) => {
-              console.log("room authenticate data.status:", data.status);
+              console.log("room authenticatespotify data.status:", data.status);
               this.setState({ spotifyAuthenticated: data.status });
+              console.log("room auth state.spotifyAuth:", state.spotifyAuthenticated);
               if (!data.status) {
                   fetch("/spotify/get-auth-url")
-                    .then((response) => response.json())
+                    .then(
+                      //  (response) => response.json();
+                      (response) => {
+                        console.log("room auth;fetch !data.status fetch response:", response);
+                        const contentType = response.headers.get('Content-Type');
+                        if (!contentType || !contentType.includes('application/json')) {
+                          throw new TypeError("room auth !data.status: we haven't got JSON!");
+                        } 
+                        return response.json();
+                     }
+                        )
                     .then((data) => { // redirect to athorization
                         console.log("room authenticate !data.status=> data.url:", data.url)
                         window.location.replace(data.url);  

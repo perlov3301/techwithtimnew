@@ -8,7 +8,7 @@ from .util import * # update_or_create, is_spotify_authenticated, get_user_token
 from api.models import Room
 import logging
 
-logging.basicConfig(filename='spotifyviews.log', encoding='urf-8', level=logging.DEBUG)
+logging.basicConfig(filename='spotifyviews.log', encoding='urf-8', level=logging.debug)
 # request authorization to spotify
 class AuthURL(APIView):
     logging.debug("spotify views.py; class AuthURL;")
@@ -65,7 +65,7 @@ class IsAuthenticated(APIView):
     logging.debug("spotify views.py; class IsAuthenticated;debug")
     def get(self, request, format=None):
         is_authenticated = is_spotify_authenticated(self.request.session.session_key)
-                                                       # request.session.session_key
+        logging.debug("spotify views isAuthenticated status:%s", is_authenticated)
         return Response({'status': is_authenticated}, status=status.HTTP_200_OK)
 
 class CurrentSong(APIView):

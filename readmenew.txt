@@ -22,6 +22,7 @@ npm install react-redux
 
 #developer.spotify dashboard application edit settings "Redirect URIs":
   http://127.0.0.1:8000/spotify/redirect
+  http://127.0.0.1:8000/
 # geeksforgeeks
   # Using current time 
     ini_time_for_now = datetime.now() 

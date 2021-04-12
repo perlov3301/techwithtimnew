@@ -1,36 +1,3 @@
-INFO:django.utils.autoreload:/Users/alexanderperlov/Documents/react/reactdjango/twt/music_controller/spotify/views.py changed, reloading.
-DEBUG:asyncio:Using selector: KqueueSelector
-INFO:root:class CreateRoomView;info
-DEBUG:root:class CreateRoomView;debug
-DEBUG:root:spotify views.py; class AuthURL;
-DEBUG:root:spotify views.py; class IsAuthenticated;debug
-DEBUG:root:spotify views.py; class CurrentSong;debug
-INFO:django.utils.autoreload:/Users/alexanderperlov/Documents/react/reactdjango/twt/music_controller/spotify/views.py changed, reloading.
-DEBUG:asyncio:Using selector: KqueueSelector
-INFO:root:class CreateRoomView;info
-DEBUG:root:class CreateRoomView;debug
-DEBUG:root:spotify views.py; class AuthURL;
-INFO:root:spotify views.py; class AuthURL
-DEBUG:root:spotify views.py; class IsAuthenticated;debug
-DEBUG:root:spotify views.py; class CurrentSong;debug
-INFO:django.utils.autoreload:/Users/alexanderperlov/Documents/react/reactdjango/twt/music_controller/spotify/views.py changed, reloading.
-DEBUG:asyncio:Using selector: KqueueSelector
-INFO:root:class CreateRoomView;info
-DEBUG:root:class CreateRoomView;debug
-DEBUG:root:spotify views.py; class AuthURL;
-INFO:root:spotify views.py; class AuthURL
-DEBUG:root:spotify views.py; class IsAuthenticated;debug
-DEBUG:root:spotify views.py; class CurrentSong;debug
-INFO:django.utils.autoreload:/Users/alexanderperlov/Documents/react/reactdjango/twt/music_controller/spotify/views.py changed, reloading.
-DEBUG:asyncio:Using selector: KqueueSelector
-INFO:root:class CreateRoomView;info
-DEBUG:root:class CreateRoomView;debug
-DEBUG:root:spotify views.py; class AuthURL;
-INFO:root:spotify views.py; class AuthURL
-DEBUG:root:spotify views.py; class IsAuthenticated;debug
-DEBUG:root:spotify views.py; class CurrentSong;debug
-INFO:django.utils.autoreload:/Users/alexanderperlov/Documents/react/reactdjango/twt/music_controller/spotify/views.py changed, reloading.
-DEBUG:asyncio:Using selector: KqueueSelector
 INFO:root:class CreateRoomView;info
 DEBUG:root:class CreateRoomView;debug
 DEBUG:root:spotify views.py; class AuthURL;
@@ -38,40 +5,3 @@ INFO:root:spotify views.py; class AuthURL
 DEBUG:root:spotify views.py; class IsAuthenticated;debug
 INFO:root:spotify views.py; class CurrentSong;info
 DEBUG:root:spotify views.py; class CurrentSong;debug
-INFO:django.utils.autoreload:/Users/alexanderperlov/Documents/react/reactdjango/twt/music_controller/spotify/views.py changed, reloading.
-DEBUG:asyncio:Using selector: KqueueSelector
-INFO:root:class CreateRoomView;info
-DEBUG:root:class CreateRoomView;debug
-DEBUG:root:spotify views.py; class AuthURL;
-INFO:root:spotify views.py; class AuthURL
-DEBUG:root:spotify views.py; class IsAuthenticated;debug
-INFO:root:spotify views.py; class CurrentSong;info
-DEBUG:root:spotify views.py; class CurrentSong;debug
-WARNING:django.request:Not Found: /apple-touch-icon-precomposed.png
-WARNING:django.request:Not Found: /apple-touch-icon.png
-WARNING:django.request:Not Found: /favicon.ico
-WARNING:django.request:Not Found: /apple-touch-icon-precomposed.png
-WARNING:django.request:Not Found: /apple-touch-icon.png
-WARNING:django.request:Not Found: /favicon.ico
-WARNING:django.request:Not Found: /apple-touch-icon-precomposed.png
-WARNING:django.request:Not Found: /apple-touch-icon.png
-WARNING:django.request:Not Found: /favicon.ico
-WARNING:django.request:Not Found: /apple-touch-icon-precomposed.png
-WARNING:django.request:Not Found: /apple-touch-icon.png
-WARNING:django.request:Not Found: /favicon.ico
-INFO:root:class CreateRoomView;info
-DEBUG:root:class CreateRoomView;debug
-DEBUG:root:spotify views.py; class AuthURL;
-INFO:root:spotify views.py; class AuthURL
-DEBUG:root:spotify views.py; class IsAuthenticated;debug
-INFO:root:spotify views.py; class CurrentSong;info
-DEBUG:root:spotify views.py; class CurrentSong;debug
-DEBUG:asyncio:Using selector: KqueueSelector
-INFO:root:class CreateRoomView;info
-DEBUG:root:class CreateRoomView;debug
-DEBUG:root:spotify views.py; class AuthURL;
-INFO:root:spotify views.py; class AuthURL
-DEBUG:root:spotify views.py; class IsAuthenticated;debug
-INFO:root:spotify views.py; class CurrentSong;info
-DEBUG:root:spotify views.py; class CurrentSong;debug
-DEBUG:asyncio:Using selector: KqueueSelector
