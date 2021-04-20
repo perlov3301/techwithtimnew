@@ -7,7 +7,7 @@ import logging
 
 logging.basicConfig(filename='spotifyutil.log', format='utf-8', level=logging.DEBUG )
 
-BASE_URL = "https://api.spotify.com/v1/me"
+BASE_URL = "https://api.spotify.com/v1/me/"
 
 def get_user_tokens(session_id):
     user_tokens = SpotifyToken.objects.filter(user=session_id)
@@ -76,9 +76,14 @@ def refresh_spotify_token(session_id):
         session_id, access_token, token_type, expires_in, refresh_token)
 
 def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False):
+    logging.debug("spotify util execute_spotify_api_request sessionid:%s", session_id)
+    logging.debug("spotify util execute_spotify_api_request endpoint:%s", endpoint)
     tokens = get_user_tokens(session_id)
+    logging.debug("spotify util execute_spotify_api_request tokens:%s", tokens)
     headers = {'Content-Type': 'application/json', 'Authorization': "Bearer "  + tokens.access_token, }
-
+    logging.debug("spotify util execute_spotify_api_request headers:%s", headers)
+    myurl = BASE_URL + endpoint
+    logging.debug("spotify util execute_spotify_api_request myurl:%s", myurl)
     if post_:
         post(BASE_URL + endpoint, headers=headers)
     if put_:

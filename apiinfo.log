@@ -1,7 +1,119 @@
-INFO:root:class CreateRoomView;info
-DEBUG:root:class CreateRoomView;debug
-DEBUG:root:spotify views.py; class AuthURL;
-INFO:root:spotify views.py; class AuthURL
-DEBUG:root:spotify views.py; class IsAuthenticated;debug
-INFO:root:spotify views.py; class CurrentSong;info
-DEBUG:root:spotify views.py; class CurrentSong;debug
+DEBUG:root:spotify views.py spotify_callback; request:<WSGIRequest: GET '/spotify/redirect?code=AQDfvIbVHW45eQLJalzwZIRUV0W14KYIgflcY0TEOBmp955YTzleshny-x1IqhIsf-b1Hfy_3Y726mrVA6ldaorSZ4O_MYcwCv6RPEh6417whwk1XpO6RtvbqeMOkZLX3rF1ybgjQ5qvwc0E2J6QR4f0kXOxc6XWf0vZmZ9oRjrFKjhv6sYIzWrYwLEv-uB0AZ0wr_yykpULiCJeuHbIgON0uGnT0_KJWZ8SJFlI_3T3nw0biNrkuRPjlzRfpzuW7hVHoDZHsH3gfxDs6gc-8vKG8a81bcDDVF2KSyE'>
+DEBUG:root:spotify views callback request code:AQDfvIbVHW45eQLJalzwZIRUV0W14KYIgflcY0TEOBmp955YTzleshny-x1IqhIsf-b1Hfy_3Y726mrVA6ldaorSZ4O_MYcwCv6RPEh6417whwk1XpO6RtvbqeMOkZLX3rF1ybgjQ5qvwc0E2J6QR4f0kXOxc6XWf0vZmZ9oRjrFKjhv6sYIzWrYwLEv-uB0AZ0wr_yykpULiCJeuHbIgON0uGnT0_KJWZ8SJFlI_3T3nw0biNrkuRPjlzRfpzuW7hVHoDZHsH3gfxDs6gc-8vKG8a81bcDDVF2KSyE
+DEBUG:root:spotify views callback request error:None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): accounts.spotify.com:443
+DEBUG:urllib3.connectionpool:https://accounts.spotify.com:443 "POST /api/token HTTP/1.1" 200 None
+DEBUG:root:spotify views callback response error:None
+DEBUG:root:spotify util user_tokens exists
+DEBUG:root:spotify util update_or_create tokens:SpotifyToken object (9)
+DEBUG:root:spotify util update_or_create expires_in:3600
+DEBUG:root:spotify util update_or_create tokens exists:SpotifyToken object (9)
+DEBUG:root:spotify util user_tokens exists
+DEBUG:root:spotify util authenticated=yes tokens:SpotifyToken object (9):
+DEBUG:root:spotify views isAuthenticated status:True
+DEBUG:root:spotify util user_tokens exists
+DEBUG:root:spotify util authenticated=yes tokens:SpotifyToken object (9):
+DEBUG:root:spotify views isAuthenticated status:True
+DEBUG:root:spotify views.py; class CurrentSong; host: 1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request sessionid:1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request endpoint:player/currently-playing
+DEBUG:root:spotify util user_tokens exists
+DEBUG:root:spotify util execute_spotify_api_request tokens:SpotifyToken object (9)
+DEBUG:root:spotify util execute_spotify_api_request headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer BQDM7r7TTwiAY3B387yQdeYaJVaL6gYy0NN2jjEGQ9hea_uXmXhfyMLmBKN35AKkwXftEp7VsypD-8Ctc4iHL3hvU_rsdai4k6gStXAl2iWVfBowwM9Y145m69zcBVh_dWb_2EX26VJo13_QUuXiXWBF2kNrSq5DmyoJifvQOgA'}
+DEBUG:root:spotify util execute_spotify_api_request myurl:https://api.spotify.com/v1/me/player/currently-playing
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.spotify.com:443
+DEBUG:urllib3.connectionpool:https://api.spotify.com:443 "GET /v1/me/player/currently-playing HTTP/1.1" 204 0
+DEBUG:root:sotify views currentsong: there is no item in response
+WARNING:django.request:Not Found: /favicon.ico
+DEBUG:root:spotify views.py; class CurrentSong; host: 1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request sessionid:1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request endpoint:player/currently-playing
+DEBUG:root:spotify util user_tokens exists
+DEBUG:root:spotify util execute_spotify_api_request tokens:SpotifyToken object (9)
+DEBUG:root:spotify util execute_spotify_api_request headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer BQDM7r7TTwiAY3B387yQdeYaJVaL6gYy0NN2jjEGQ9hea_uXmXhfyMLmBKN35AKkwXftEp7VsypD-8Ctc4iHL3hvU_rsdai4k6gStXAl2iWVfBowwM9Y145m69zcBVh_dWb_2EX26VJo13_QUuXiXWBF2kNrSq5DmyoJifvQOgA'}
+DEBUG:root:spotify util execute_spotify_api_request myurl:https://api.spotify.com/v1/me/player/currently-playing
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.spotify.com:443
+DEBUG:urllib3.connectionpool:https://api.spotify.com:443 "GET /v1/me/player/currently-playing HTTP/1.1" 204 0
+DEBUG:root:sotify views currentsong: there is no item in response
+DEBUG:root:spotify views.py; class CurrentSong; host: 1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request sessionid:1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request endpoint:player/currently-playing
+DEBUG:root:spotify util user_tokens exists
+DEBUG:root:spotify util execute_spotify_api_request tokens:SpotifyToken object (9)
+DEBUG:root:spotify util execute_spotify_api_request headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer BQDM7r7TTwiAY3B387yQdeYaJVaL6gYy0NN2jjEGQ9hea_uXmXhfyMLmBKN35AKkwXftEp7VsypD-8Ctc4iHL3hvU_rsdai4k6gStXAl2iWVfBowwM9Y145m69zcBVh_dWb_2EX26VJo13_QUuXiXWBF2kNrSq5DmyoJifvQOgA'}
+DEBUG:root:spotify util execute_spotify_api_request myurl:https://api.spotify.com/v1/me/player/currently-playing
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.spotify.com:443
+DEBUG:urllib3.connectionpool:https://api.spotify.com:443 "GET /v1/me/player/currently-playing HTTP/1.1" 204 0
+DEBUG:root:sotify views currentsong: there is no item in response
+WARNING:django.request:Not Found: /favicon.ico
+DEBUG:root:spotify views.py; class CurrentSong; host: 1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request sessionid:1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request endpoint:player/currently-playing
+DEBUG:root:spotify util user_tokens exists
+DEBUG:root:spotify util execute_spotify_api_request tokens:SpotifyToken object (9)
+DEBUG:root:spotify util execute_spotify_api_request headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer BQDM7r7TTwiAY3B387yQdeYaJVaL6gYy0NN2jjEGQ9hea_uXmXhfyMLmBKN35AKkwXftEp7VsypD-8Ctc4iHL3hvU_rsdai4k6gStXAl2iWVfBowwM9Y145m69zcBVh_dWb_2EX26VJo13_QUuXiXWBF2kNrSq5DmyoJifvQOgA'}
+DEBUG:root:spotify util execute_spotify_api_request myurl:https://api.spotify.com/v1/me/player/currently-playing
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.spotify.com:443
+DEBUG:urllib3.connectionpool:https://api.spotify.com:443 "GET /v1/me/player/currently-playing HTTP/1.1" 204 0
+DEBUG:root:sotify views currentsong: there is no item in response
+DEBUG:root:spotify views.py; class CurrentSong; host: 1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request sessionid:1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request endpoint:player/currently-playing
+DEBUG:root:spotify util user_tokens exists
+DEBUG:root:spotify util execute_spotify_api_request tokens:SpotifyToken object (9)
+DEBUG:root:spotify util execute_spotify_api_request headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer BQDM7r7TTwiAY3B387yQdeYaJVaL6gYy0NN2jjEGQ9hea_uXmXhfyMLmBKN35AKkwXftEp7VsypD-8Ctc4iHL3hvU_rsdai4k6gStXAl2iWVfBowwM9Y145m69zcBVh_dWb_2EX26VJo13_QUuXiXWBF2kNrSq5DmyoJifvQOgA'}
+DEBUG:root:spotify util execute_spotify_api_request myurl:https://api.spotify.com/v1/me/player/currently-playing
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.spotify.com:443
+DEBUG:urllib3.connectionpool:https://api.spotify.com:443 "GET /v1/me/player/currently-playing HTTP/1.1" 204 0
+DEBUG:root:sotify views currentsong: there is no item in response
+WARNING:django.request:Not Found: /apple-touch-icon-precomposed.png
+WARNING:django.request:Not Found: /apple-touch-icon.png
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /apple-touch-icon-precomposed.png
+WARNING:django.request:Not Found: /apple-touch-icon.png
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /apple-touch-icon-precomposed.png
+WARNING:django.request:Not Found: /apple-touch-icon.png
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /apple-touch-icon-precomposed.png
+WARNING:django.request:Not Found: /apple-touch-icon.png
+WARNING:django.request:Not Found: /favicon.ico
+DEBUG:root:spotify views.py; class CurrentSong; host: 1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request sessionid:1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request endpoint:player/currently-playing
+DEBUG:root:spotify util user_tokens exists
+DEBUG:root:spotify util execute_spotify_api_request tokens:SpotifyToken object (9)
+DEBUG:root:spotify util execute_spotify_api_request headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer BQDM7r7TTwiAY3B387yQdeYaJVaL6gYy0NN2jjEGQ9hea_uXmXhfyMLmBKN35AKkwXftEp7VsypD-8Ctc4iHL3hvU_rsdai4k6gStXAl2iWVfBowwM9Y145m69zcBVh_dWb_2EX26VJo13_QUuXiXWBF2kNrSq5DmyoJifvQOgA'}
+DEBUG:root:spotify util execute_spotify_api_request myurl:https://api.spotify.com/v1/me/player/currently-playing
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.spotify.com:443
+DEBUG:urllib3.connectionpool:https://api.spotify.com:443 "GET /v1/me/player/currently-playing HTTP/1.1" 204 0
+DEBUG:root:sotify views currentsong: there is no item in response
+WARNING:django.request:Not Found: /apple-touch-icon-precomposed.png
+WARNING:django.request:Not Found: /apple-touch-icon.png
+DEBUG:root:spotify views.py; class CurrentSong; host: 1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request sessionid:1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request endpoint:player/currently-playing
+DEBUG:root:spotify util user_tokens exists
+DEBUG:root:spotify util execute_spotify_api_request tokens:SpotifyToken object (9)
+DEBUG:root:spotify util execute_spotify_api_request headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer BQDM7r7TTwiAY3B387yQdeYaJVaL6gYy0NN2jjEGQ9hea_uXmXhfyMLmBKN35AKkwXftEp7VsypD-8Ctc4iHL3hvU_rsdai4k6gStXAl2iWVfBowwM9Y145m69zcBVh_dWb_2EX26VJo13_QUuXiXWBF2kNrSq5DmyoJifvQOgA'}
+DEBUG:root:spotify util execute_spotify_api_request myurl:https://api.spotify.com/v1/me/player/currently-playing
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.spotify.com:443
+DEBUG:urllib3.connectionpool:https://api.spotify.com:443 "GET /v1/me/player/currently-playing HTTP/1.1" 204 0
+DEBUG:root:sotify views currentsong: there is no item in response
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /apple-touch-icon-precomposed.png
+WARNING:django.request:Not Found: /apple-touch-icon.png
+DEBUG:root:spotify util user_tokens exists
+DEBUG:root:spotify util authenticated=yes tokens:SpotifyToken object (9):
+DEBUG:root:spotify views isAuthenticated status:True
+DEBUG:root:spotify views.py; class CurrentSong; host: 1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request sessionid:1yql8blfnjnerwgd3iswvwyl9b9xseg8
+DEBUG:root:spotify util execute_spotify_api_request endpoint:player/currently-playing
+DEBUG:root:spotify util user_tokens exists
+DEBUG:root:spotify util execute_spotify_api_request tokens:SpotifyToken object (9)
+DEBUG:root:spotify util execute_spotify_api_request headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer BQDM7r7TTwiAY3B387yQdeYaJVaL6gYy0NN2jjEGQ9hea_uXmXhfyMLmBKN35AKkwXftEp7VsypD-8Ctc4iHL3hvU_rsdai4k6gStXAl2iWVfBowwM9Y145m69zcBVh_dWb_2EX26VJo13_QUuXiXWBF2kNrSq5DmyoJifvQOgA'}
+DEBUG:root:spotify util execute_spotify_api_request myurl:https://api.spotify.com/v1/me/player/currently-playing
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.spotify.com:443
+DEBUG:urllib3.connectionpool:https://api.spotify.com:443 "GET /v1/me/player/currently-playing HTTP/1.1" 204 0
+DEBUG:root:sotify views currentsong: there is no item in response
+WARNING:django.request:Not Found: /favicon.ico

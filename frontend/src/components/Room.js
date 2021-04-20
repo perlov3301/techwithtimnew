@@ -30,7 +30,7 @@ export default class Room extends Component {
               return response.json();
           } )
           .then((data) => {
-              conosole.log("room getroomdetails data.is_host", data.is_host);
+              console.log("room getroomdetails data.is_host", data.is_host);
               this.setState({
                   votesToSkip: data.votes_to_skip,
                   guestCanPause: data.guest_can_pause,
@@ -66,7 +66,7 @@ export default class Room extends Component {
           .then((data) => {
               console.log("room authenticatespotify data.status:", data.status);
               this.setState({ spotifyAuthenticated: data.status });
-              console.log("room auth state.spotifyAuth:", state.spotifyAuthenticated);
+              console.log("room auth state.spotifyAuth:", this.state.spotifyAuthenticated);
               if (!data.status) {
                   fetch("/spotify/get-auth-url")
                     .then(

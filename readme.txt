@@ -9,6 +9,7 @@ git push -u origin main
 % python3 ./manage.py makemigrations
 % python3 ./manage.py migrate
 % python3 ./manage.py runserver
+% cd frontend => npm run dev
 
 # redux
 npm install react-redux
@@ -48,4 +49,8 @@ npm install react-redux
          $ python package.py # this will produce a dupeGuru.app in the dist folder.
      # implementing with GUI
        https://www.youtube.com/watch?v=GhPpnCagQFs
+# logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', 
+    level=logging.INFO , filename='ex.log')
+or logging.getLogger().setLevel(logging.DEBUG)
+  logging.debug('debug')
 
