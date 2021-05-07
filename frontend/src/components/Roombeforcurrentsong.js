@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Button, Typography } from "@material-ui/core";
 import CreateRoomPage from "./CreateRoomPage";
-
 export default class Room extends Component {
     constructor(props) {
         super(props);
@@ -10,14 +9,16 @@ export default class Room extends Component {
             guestCanPause: false,
             isHost: false,
             showSettings: false,
+            spotifyAuthenticated: false,
         } ;
-        // match is prop how get component /room/:roomCode
-        this.roomCode = this.props.match.params.roomCode;
+        this.roomCode = this.props.match.params.roomCode;// get component /room/:roomCode
         this.leaveButtonPressed = this.leaveButtonPressed.bind(this);
-        this.getRoomDetails();
         this.upadateShowSettings = this.updateShowSettings.bind(this);
         this.renderSettingsButton = this.renderSettingsButton.bind(this);
         this.renderSettings =       this.renderSettings.bind(this);
+        this.getRoomDetails =       this.getRoomDetails.bind(this);
+        this.authenticatedSpotify = this.authenticateSpotify.bind(this);
+        this.getRoomDetails();
     }
     getRoomDetails() {
         fetch('/api/get-room' + '?code=' + this.roomCode)
@@ -29,14 +30,65 @@ export default class Room extends Component {
               return response.json();
           } )
           .then((data) => {
+              console.log("room getroomdetails data.is_host", data.is_host);
               this.setState({
                   votesToSkip: data.votes_to_skip,
                   guestCanPause: data.guest_can_pause,
                   isHost: data.is_host
               });
+              console.log("room getroomdetails state.isHost:", this.state.isHost);
+              // if (this.state.isHost) 
+              if (data.is_host)
+                { this.authenticateSpotify(); }
           });
     }
-
+    sampleMethod() {
+        fetch('https://example.com/profile', {
+            method: 'POST', // or 'PUT'
+            headers: { 'Content-Type': 'application/json', }, // two added comas
+            body: JSON.stringify(data),
+          })
+          .then(response => response.json())
+          .then(data => { console.log('Success:', data); })
+          .catch((error) => { console.error('Error:', error); });
+    }
+    authenticateSpotify() {
+        fetch("/spotify/is-authenticated")
+          //.then(response => response.json())
+          .then((response) => {
+            console.log("room authenticatespotify;fetch response:", response);
+            const contentType = response.headers.get('Content-Type');
+            if (!contentType || !contentType.includes('application/json')) {
+              throw new TypeError("room authenticatespotify: we haven't got JSON!");
+            } 
+            return response.json();
+         })
+          .then((data) => {
+              console.log("room authenticatespotify data.status:", data.status);
+              this.setState({ spotifyAuthenticated: data.status });
+              console.log("room auth state.spotifyAuth:", this.state.spotifyAuthenticated);
+              if (!data.status) {
+                  fetch("/spotify/get-auth-url")
+                    .then(
+                      //  (response) => response.json();
+                      (response) => {
+                        console.log("room auth;fetch !data.status fetch response:", response);
+                        const contentType = response.headers.get('Content-Type');
+                        if (!contentType || !contentType.includes('application/json')) {
+                          throw new TypeError("room auth !data.status: we haven't got JSON!");
+                        } 
+                        return response.json();
+                     }
+                        )
+                    .then((data) => { // redirect to athorization
+                        console.log("room authenticate !data.status=> data.url:", data.url)
+                        window.location.replace(data.url);  
+                        // window.location.replace("htts://developer.spotify.net");
+                    })
+              }
+          })
+          .catch((error) => { console.error("room authenticate catch error:", error); })
+    }
     leaveButtonPressed() {
         const requestOptions = {
             method: "POST",
@@ -50,7 +102,6 @@ export default class Room extends Component {
           } )
           .catch((error) => console.log(error) );
     }
-
     async updateShowSettings(value) {
         console.log("room updateShowSettings value:", value);
         this.setState({
@@ -59,7 +110,6 @@ export default class Room extends Component {
         await console.log("room settings:", this.state);
         return true;
     }
-
     renderSettings () {
         return (
             <fieldset className="fieldclass"><legend> Settings</legend>
@@ -71,7 +121,7 @@ export default class Room extends Component {
                   votesToSkip={this.state.votesToSkip}
                   guestCanPause={this.state.guestCanPause} 
                   roomCode={this.roomCode} 
-                  updateCallback={() => { return true; }} />
+                  updateCallback={this.getRoomDetails} />
                   
               </Grid>
               <Grid item xs={12} align="center">
@@ -86,7 +136,6 @@ export default class Room extends Component {
           </fieldset>
         );
     }
-
     renderSettingsButton() {
         return (
             <Grid item xs={12} align="center" >
@@ -102,7 +151,6 @@ export default class Room extends Component {
             </Grid>
         );
     }
-
     render() {
         if (this.state.showSettings) {
             return this.renderSettings();

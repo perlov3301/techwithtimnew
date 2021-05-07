@@ -98,7 +98,7 @@ class CurrentSong(APIView):
 
         artist_string = ""
 
-        for i, artist in enumerate(item.get('artist')):
+        for i, artist in enumerate(item.get('artists')):
             if i > 0:
                 artist_string += ", "
             name = artist.get('name')
@@ -117,3 +117,50 @@ class CurrentSong(APIView):
 
         #return Response(response, status=status.HTTP_200_OK)
         return Response(song, status=status.HTTP_200_OK)
+    
+class PlayList(APIView):
+    logging.debug("spotify views.py; class PLayList;debug")
+    def get(self, request, format=None):
+        room_code = self.request.session.get('room_code')# within the session=>exists
+        room = Room.objects.filter(code=room_code)
+        if room.exists():
+            room = room[0]
+        else:
+            return Response({'status': 'room was not found'}, status=status.HTTP_404_NOT_FOUND)
+        host = room.host
+        endpoint = "player/playlist"
+        logging.debug("spotify views.py; class PlayList; host: %s", host)
+        response = execute_spotify_api_request(host, endpoint)
+        if 'item' not in response:
+            logging.debug("sotify views playlist: there is no item in response")
+        else:
+            logging.debug("spotify views playlist: response content something")
+
+        # print(response)
+        if 'error' in response or 'item' not in response:
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+        
+        mylist = response.get('playlist')
+        # is_playing = response.get('is_playing')
+        # song_id = item.get('id')
+
+        myartists = ""
+
+        for i, myartist in enumerate(mylist.get('artists')):
+            if i > 0:
+                myartists += ", "
+            name = myartist.get('name')
+        
+        # song = {
+        #     'title': item.get('name'),
+        #     'artist': artist_string,
+        #     'duration': duration,
+        #     'time': progress,
+        #     'umage_url': album_cover,
+        #     'is_playing': is_playing,
+        #     'votes': 0,
+        #     'id': song_id
+        # }
+
+        #return Response(response, status=status.HTTP_200_OK)
+        return Response(myartists, status=status.HTTP_200_OK)

@@ -1,5 +1,10 @@
 מסך מחשב יציאת DisplayPort
 osascript -e 'tell application "QuickTime Player" to set rate of document 1 to 0.62'
+# run app
+$% python3 ./manage.py runserver
++ terminal
+$% cd frontend => npm run dev
+# add to git
 git add .
 git commit -m "first commit before react"
 git branch -M main
@@ -53,4 +58,15 @@ npm install react-redux
     level=logging.INFO , filename='ex.log')
 or logging.getLogger().setLevel(logging.DEBUG)
   logging.debug('debug')
+# audio left channel copy to right
+  $% ffmpeg -i stereo.mov -codec:v copy -af pan="mono| c0=FL" mono.mov
+  # you need to use " mono| c0=FL " (mono: c0=FL  is deprecated)
+  # added this to my ~/.bash_profile
+    tomono(){
+    ffmpeg -i $1 -codec:v copy -af pan=”mono| c0=FL” $2
+    }
+    and I can now do $% tomono infile.mov outfile.mov
+# superuser:
+  $% ffmpeg -i infile -codec:v copy -ac 1 -ab 192k outfile
 
+# run .bashrc: $% exec $SHELL or $% source ~/.bashrc
